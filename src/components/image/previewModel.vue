@@ -1,6 +1,8 @@
 <template>
-	<el-dialog :visible.sync="show">
-		<img class="w-100" src="http://img4.imgtn.bdimg.com/it/u=2350302849,3323337377&fm=26&gp=0.jpg"/>
+	<el-dialog :visible.sync="show" with="50vw" top="20vh">
+		<div style="margin: -60px -20px; -30px -20px">
+			<img class="w-100" :src="previewUrl"/>
+		</div>
 	</el-dialog>
 </template>
 
@@ -10,7 +12,8 @@
 			previewModel:{
 				type:Boolean,
 				default:false
-			}
+			},
+			previewUrl:String
 		},
 		watch:{
 			previewModel(val){
@@ -28,5 +31,6 @@
 	}
 </script>
 
-<style>
+<style scoped>
+	
 </style>

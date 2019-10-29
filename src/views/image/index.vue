@@ -29,23 +29,28 @@
 					<!-- 主布局 -->
 					<el-main style="position: absolute;top:60px;bottom: 60px;right: 0;left: 200px;">
 							<el-row :gutter="10">
-							  <el-col  :span="24" :lg="4" :md="6" :sm="12" v-for="o in 100" :key="o">
+							  <el-col  
+							  v-for="(item,index) in imageList"
+							  :key="index"
+							  :span="24" :lg="4" :md="6" :sm="12">
 								  <el-card 
 								  :body-style="{padding:0}"
 								  class="box-card mb-2">
 								    <div  class="text item ">
 									<div class="position-relative">
-										<img src="http://img4.imgtn.bdimg.com/it/u=2350302849,3323337377&fm=26&gp=0.jpg" class="w-100" style="height: 100px;"/>
-										<div style="background:rgba(0,0,0,.2);color: #FFFFFF;position: absolute;left: 0;bottom: 0;z-index: 99;width: 100%;">
-																				  123
+										<img :src="item.url" class="w-100" style="height: 100px;"/>
+										<div style="background:rgba(0,0,0,.2);color: #FFFFFF;position: absolute;left: 0;bottom: 0;z-index: 99;width: 100%; font-size: 14px;text-indent: 5px;">
+										  {{item.name}}
 										</div>
 									</div>		      
 									  <div class="p-2 text-center">
 										  <el-button-group>
 										    <el-button size="mini"
-											@click="previewImage"
+											@click="previewImage(item)"
 											icon="el-icon-view"></el-button>
-										    <el-button size="mini" icon="el-icon-edit"></el-button>
+										    <el-button 
+											@click="imageEdit(item,index)"
+											size="mini" icon="el-icon-edit"></el-button>
 										    <el-button size="mini" icon="el-icon-delete"></el-button>
 										  </el-button-group>
 									  </div>
@@ -65,7 +70,7 @@
 		 :ablumModal="ablumModal" v-model="ablumModal" @oncilckConfirm="oncilckConfirm" :ablumForm="ablumForm" :modalTitle="modalTitle"></ablum-modal>
 		 <!-- 上传图片 -->
 		 <upload-img :uploadModal="uploadModal" v-model="uploadModal"></upload-img>
-		 <preview-model :previewModel="previewModel" v-model="previewModel"></preview-model>
+		 <preview-model :previewUrl="previewUrl" :previewModel="previewModel" v-model="previewModel"></preview-model>
 	</div>
 </template>
 
@@ -98,7 +103,14 @@ export default {
 			},
 			formLabelWidth: '120px',
 			uploadModal:false,
-			previewModel:false
+			previewModel:false,
+			previewUrl:'',
+			imageList:[
+				{
+					name:'相册1',
+					url:'http://img4.imgtn.bdimg.com/it/u=2350302849,3323337377&fm=26&gp=0.jpg'
+				}
+			]
 		};
 	},
 	created() {
@@ -184,9 +196,14 @@ export default {
 			this.uploadModal=!this.uploadModal;
 		},
 		//预览图片
-		previewImage(){
-			console.log('预览')
+		previewImage(item){
+			console.log('预览',item)
+			this.previewUrl=item.url;
 			this.previewModel=true
+		},
+		//修改图片名称
+		imageEdit(item,index){
+			
 		}
 	}
 };
