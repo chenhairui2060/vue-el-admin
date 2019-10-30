@@ -21,14 +21,14 @@ let routes = [
 				component:'index/index'
 			},
 			{
+				meta:{title:'相册管理'},
+				component:'image/index'
+			},
+			{
 				meta:{title:'商品列表'},
 				name:'goodslist',
 				component:'shop/goods/list'
 			},
-			{
-				meta:{title:'相册管理'},
-				component:'image/index'
-			}
 		]
 	},
 	{

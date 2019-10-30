@@ -1,7 +1,7 @@
 <template>
-	<el-dialog :visible.sync="show" with="50vw" top="20vh">
+	<el-dialog :visible.sync="show" with="50vw" top="20vh" class="mh-50">
 		<div style="margin: -60px -20px; -30px -20px">
-			<img class="w-100" :src="previewUrl"/>
+			<img class="w-100 " :src="previewUrl"/>
 		</div>
 	</el-dialog>
 </template>
@@ -32,5 +32,7 @@
 </script>
 
 <style scoped>
-	
+	.el-dialog__body{
+		height: 500px !important;
+	}
 </style>
