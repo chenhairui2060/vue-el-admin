@@ -144,7 +144,7 @@ export default {
 				this.imageList.push({
 					id: i,
 					name: '相册' + i,
-					url: 'http://img1.imgtn.bdimg.com/it/u=2018939532,1617516463&fm=26&gp=0.jpg',
+					url: 'https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=d985fb87d81b0ef473e89e5eedc551a1/b151f8198618367aa7f3cc7424738bd4b31ce525.jpg',
 					ischeck: false,
 					checkOrder: 0
 				});
