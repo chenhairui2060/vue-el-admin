@@ -67,7 +67,10 @@ export default {
 		this.__initNavBar();
 	},
 	watch: {
-		$route(to, from) {
+		$route(to, from) {	
+		    if(to.path=='/index'){
+				this.slideMenuActive=0
+			}
 			// 本地存储
 			localStorage.setItem(
 				'navActive',

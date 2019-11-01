@@ -8,6 +8,10 @@
 ```shell
 	$ vue create vue-el-admin
 ```
+##4.安装vuex
+```
+	npm install vuex --save
+```
 ## 3.跑项目
 ```shell
   $ npm run serve

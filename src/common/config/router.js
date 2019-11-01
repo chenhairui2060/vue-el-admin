@@ -25,6 +25,10 @@ let routes = [
 				component:'image/index'
 			},
 			{
+				meta:{title:'商品创建'},
+				component:'shop/goods/create'
+			},
+			{
 				meta:{title:'商品列表'},
 				name:'goodslist',
 				component:'shop/goods/list'

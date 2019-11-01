@@ -5,7 +5,9 @@
 				<button-search :superSearch="superSearch" ref="buttonSearch" @searchEvent="searchEvent" placeholder="要搜索的商品名称">
 					<template #left>
 						<!-- 左边 -->
-						<el-button size="mini" type="success">发布商品</el-button>
+						<router-link :to="{name:'shop_goods_create'}">
+							<el-button size="mini" type="success" class="mr-2">发布商品</el-button>
+						</router-link>		
 						<el-button size="mini" type="warning">恢复商品</el-button>
 						<el-button size="mini" type="danger">批量删除</el-button>
 
@@ -124,7 +126,6 @@ export default {
 	},
 	created() {
 		this.getData();
-		console.log(this.tableData);
 	},
 	methods: {
 		handleClick(tab, event) {
@@ -180,7 +181,7 @@ export default {
 			item.status=item.status==1?0:1
 		},
 		handleSelectionChange(val) {
-			console.log(val);
+			// console.log(val);
 			this.multipleSelection = val;
 		},
 		getData() {
@@ -193,7 +194,7 @@ export default {
 					this.tableData[i].list.push({
 						id: j,
 						title: '荣耀 V10全网通 标配版 4BG+64GB 魅力红' + i + '-' + j,
-						cover: 'http://e.hiphotos.baidu.com/image/h%3D300/sign=005ac80783b1cb1321693a13ed5656da/1ad5ad6eddc451dab539af03b8fd5266d116320e.jpg',
+						cover: require('@/assets/images/phone.png'),
 						create_time: '2019-07-17 18:34:14',
 						category: '手机',
 						type: '普通商品',

@@ -25,11 +25,7 @@ export default {
 			{
 				name: "商品",
 				subActive: '0',
-				submenu: [{
-					icon: "el-icon-s-claim",
-					name: "商品列表",
-					pathname: "goodslist"
-				}]
+				submenu: []
 			},
 			{
 				name: "订单"
