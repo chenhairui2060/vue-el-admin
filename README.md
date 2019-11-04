@@ -10,7 +10,22 @@
 ```
 ##4.安装vuex
 ```
-	npm install vuex --save
+	npm install vuex --save、
+	src目录底下新建store目录
+	1.store目录底下新建index.js
+	import Vue from 'vue'
+	import Vuex from 'vuex'
+	Vue.use(Vuex)
+	export default new Vuex.Store({
+		state:{
+			
+		},
+		mutations:{
+			
+		}
+	})
+	2.新建modules目录//模块化
+	3.在main.js里面引用vuex
 ```
 ## 3.跑项目
 ```shell
