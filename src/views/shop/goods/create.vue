@@ -24,26 +24,7 @@
 				<!-- 多规格 -->
 				<template v-else>
 					<!-- 规格卡片 -->
-					<el-form label-width="80px">
-						<el-form-item label="添加规格">
-							<div class="card" style="line-height: 1.2;">
-								<div class="card-header d-flex align-items-center">
-									规格项：
-									<el-input class="w-25" size="mini"><el-button slot="append" style="border: none;" class="el-icon-more"></el-button></el-input>
-									<el-radio-group style="margin-bottom: -12px;" size="mini" class="ml-2">
-										<el-radio :label="3">无</el-radio>
-										<el-radio :label="6">颜色</el-radio>
-										<el-radio :label="9">图片</el-radio>
-									</el-radio-group>
-									<el-button size="mini" style="border: none;" class="el-icon-top ml-auto"></el-button>
-									<el-button size="mini" style="border: none;" class="el-icon-bottom"></el-button>
-									<el-button type="text">删除</el-button>
-								</div>
-								<div class="card-body"><el-button type="text" size="mini" icon="el-icon-plus">增加规格值</el-button></div>
-							</div>
-							<el-button type="success" size="mini">增加规格</el-button>
-						</el-form-item>
-					</el-form>
+					<sku-card></sku-card>
 					<el-form label-width="80px">
 						<el-form-item label="批量添加">
 							<el-button type="text">销售价</el-button>
@@ -70,6 +51,7 @@
 import { mapState, mapMutations } from 'vuex';
 import baseCreate from '@/components/shop/create/baseCreate.vue';
 import singleAttrs from '@/components/shop/create/singleAttrs.vue';
+import skuCard from "@/components/shop/create/skuCard.vue";
 export default {
 	data() {
 		return {
@@ -79,7 +61,8 @@ export default {
 	},
 	components: {
 		baseCreate,
-		singleAttrs
+		singleAttrs,
+		skuCard
 	},
 	computed: {
 		...mapState({

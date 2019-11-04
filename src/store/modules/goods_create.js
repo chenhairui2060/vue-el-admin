@@ -34,6 +34,24 @@ export default {
 			console.log(key,value)
 			// console.log(state)
 			state[key]=value
+		},
+		//增加规格卡片
+		addSkuCard(state){
+			state.sku_card.push({
+				name:'规格名称',
+				type:0,
+				list:[]
+			})
+		},
+		//删除规格卡片
+		delSkuCard(state,index){
+			console.log(index)
+			state.sku_card.splice(index,1)
+		},
+		//修改规格卡片值
+		vModelSkuCard(state,{key,index,value}){
+			// console.log(key,index,value)
+			state.sku_card[index][key]=value
 		}
 	},
 	actions: {
