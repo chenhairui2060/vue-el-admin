@@ -19,8 +19,12 @@
 						<el-radio :label="1">颜色</el-radio>
 						<el-radio :label="2">图片</el-radio>
 					</el-radio-group>
-					<el-button size="mini" style="border: none;" class="el-icon-top ml-auto"></el-button>
-					<el-button size="mini" style="border: none;" class="el-icon-bottom"></el-button>
+					<el-button size="mini" 
+					@click="skuCard('moveUp',index)"
+					style="border: none;" class="el-icon-top ml-auto"></el-button>
+					<el-button 
+					@click="skuCard('moveDown',index)"
+					size="mini" style="border: none;" class="el-icon-bottom"></el-button>
 					<el-button type="text" @click="delSkuCard(index)">删除</el-button>
 				</div>
 				<div class="card-body">
@@ -47,9 +51,13 @@
 			})
 		},
 		methods:{
-			...mapMutations(['addSkuCard','delSkuCard','vModelSkuCard']),
+			...mapMutations(['addSkuCard','delSkuCard','vModelSkuCard','sortSkuCard']),
 			vModel(key,index,value){
 				this.vModelSkuCard({key,index,value})
+			},
+			//排序上移下移
+			skuCard(action,index){
+				this.sortSkuCard({action,index})
 			}
 		}
 	}
