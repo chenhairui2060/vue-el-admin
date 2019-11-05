@@ -1,5 +1,4 @@
 import $Util from "@/common/util.js"
-
 // 创建商品
 export default {
 	state: {
@@ -47,8 +46,7 @@ export default {
 		},
 		//删除规格卡片
 		delSkuCard(state,index){
-			// console.log(index)
-			state.sku_card.splice(index,1)
+			state.sku_card.splice(index,1)		
 		},
 		//修改规格卡片值
 		vModelSkuCard(state,{key,index,value}){
