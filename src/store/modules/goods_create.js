@@ -22,7 +22,18 @@ export default {
 			{
 				name:"颜色",//规格名称
 				type:0,//规格类型 0无 1颜色 2图片
-				list:[]
+				list:[
+					{
+						name:'黄色',
+						image:'',
+						color:''
+					},
+					{
+						name:'红色',
+						image:'',
+						color:''
+					}
+				]
 			}
 		]
 	},
@@ -58,6 +69,12 @@ export default {
 			console.log(action,index)
 			//上移  操作 ，下标
 			$Util[action](state.sku_card,index)
+		},
+		//增加指定规格卡片的规格属性
+		addSkuVulue(state,index){
+			state.sku_card[index].list.push({
+				
+			})
 		}
 	},
 	actions: {
