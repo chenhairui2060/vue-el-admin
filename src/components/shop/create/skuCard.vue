@@ -19,11 +19,19 @@
 		<div class="card-body">
 			<!-- 规格属性列表 -->
 			<div class="d-flex align-items-center flex-wrap">
-				<skuCardItem :item="item"></skuCardItem>
+				<skuCardItem :key="index2" 
+				 :item="item2"
+				 :index="index2" :cardIndex="index"
+				 v-dragging="{ item: item2, list: list, group: `skuItem${index}` }"
+				 :type="item.type" v-for="(item2,index2) in list"></skuCardItem>
 			</div>
 			<!-- 增加规格属性 -->
-			<el-tooltip class="item" effect="dark" content="增加规格值" placement="bottom-end">
-				<el-button class="mt-2" type="text" size="mini" icon="el-icon-plus">增加规格值</el-button>
+			<el-tooltip class="item" 
+			 effect="dark" content="增加规格值" placement="bottom-end">
+				<el-button class="mt-2" 
+				@click="addSkuVulue(index)"
+				type="text" size="mini" 
+				icon="el-icon-plus">增加规格值</el-button>
 			</el-tooltip>
 		</div>
 	</div>
@@ -39,13 +47,31 @@ export default {
 		total:Number
 	},
 	data() {
-		return {};
+		return {
+			list:this.item.list
+		};
+	},
+	mounted() {
+		// this.$dragging.$on('dragged', ({ value }) => {
+		// 	console.log(value.item);
+		// 	// console.log(value.list);
+		// });
+		// //dragend 监听拖拽结束
+		this.$dragging.$on('dragend', (e) => {
+			// console.log('拖拽结束')
+			if(e.group=='skuItem'+this.index){
+				this.sortSkuValue({
+					index:this.index,
+					value:this.list
+				})
+			}
+		});
 	},
 	components:{
 		skuCardItem
 	},
 	methods: {
-		...mapMutations(['delSkuCard', 'vModelSkuCard', 'sortSkuCard']),
+		...mapMutations(['delSkuCard', 'vModelSkuCard', 'sortSkuCard','addSkuVulue','sortSkuValue']),
 		vModel(key, index, value) {
 			this.vModelSkuCard({ key, index, value });
 		},

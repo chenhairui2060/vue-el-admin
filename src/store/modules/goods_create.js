@@ -73,8 +73,23 @@ export default {
 		//增加指定规格卡片的规格属性
 		addSkuVulue(state,index){
 			state.sku_card[index].list.push({
-				
+				name:'规格名称',
+				image:'',
+				color:''
 			})
+		},
+		//删除指定规格卡片属性cardIndex卡片索引  valueIndex
+		delSkuValue(state,{cardIndex,valueIndex}){
+			state.sku_card[cardIndex].list.splice(valueIndex,1)	
+		},
+		//修改指定规格卡片的规格属性  
+		updateSkuValue(state,{cardIndex,valueIndex,key,value}){
+			state.sku_card[cardIndex].list[valueIndex][key]=value;
+		},
+		//排序规格卡片的规格列表修改
+		sortSkuValue(state,{index,value}){
+			state.sku_card[index].list=value;
+			console.log(state.sku_card[index])
 		}
 	},
 	actions: {

@@ -8,7 +8,7 @@
 ```shell
 	$ vue create vue-el-admin
 ```
-##4.安装vuex
+##6.安装vuex
 ```
 	npm install vuex --save、
 	src目录底下新建store目录
@@ -67,6 +67,13 @@
 			}
 		]
 	})
+```
+##6.安装拖拽排序
+```
+$ npm install awe-dnd --save
+	//main.js
+	import VueDND from 'awe-dnd'
+	Vue.use(VueDND)
 ```
 ## Project setup
 ```

@@ -26,14 +26,14 @@
 					<!-- 规格卡片 -->
 					<el-form label-width="80px">
 						<el-form-item label="添加规格">
-							<sku-card v-for="(item, index) in sku_card" :key="index" :item="item" :index="index" :total="skuCardTotal"></sku-card>			   
+							<sku-card v-for="(item, index) in sku_card" :key="index" :item="item" :index="index" :total="skuCardTotal"></sku-card>
 							<!-- 增加卡片 -->
 							<el-tooltip class="item" effect="dark" content="增加规格" placement="bottom-end">
-							    <el-button type="success" @click="addSkuCard" size="mini">增加规格</el-button>
+								<el-button type="success" @click="addSkuCard" size="mini">增加规格</el-button>
 							</el-tooltip>
 						</el-form-item>
 					</el-form>
-					
+
 					<el-form label-width="80px">
 						<el-form-item label="批量添加">
 							<el-button type="text">销售价</el-button>
@@ -43,12 +43,80 @@
 							<el-button type="text">体积</el-button>
 							<el-button type="text">重量</el-button>
 						</el-form-item>
-						<el-form-item label="规格设置">规格设置</el-form-item>
+						<el-form-item label="规格设置" class="mb-5">
+							<table class="table table-sm table-bordered">
+							  <thead>
+							    <tr>
+							      <th scope="col" 
+								  rowspan="1"
+								  colspan="2"
+								  class="text-center">商品规格</th>
+							      <th scope="col" 
+								   rowspan="2"
+								   style="vertical-align: middle;"
+								  class="text-center">sku图片</th>
+							      <th scope="col" 
+								   rowspan="2"
+								    style="vertical-align: middle;"
+								  class="text-center">销售价</th>
+							      <th 
+								   rowspan="2"
+								    style="vertical-align: middle;"
+								  scope="col" class="text-center">市场价</th>
+								  <th
+								   rowspan="2"
+								    style="vertical-align: middle;"
+								  scope="col" class="text-center">市场价</th>
+								  <th
+								   rowspan="2"
+								    style="vertical-align: middle;"
+								  scope="col" class="text-center">成本价</th>
+								  <th
+								   rowspan="2"
+								    style="vertical-align: middle;"
+								  scope="col" class="text-center">库存</th>
+								  <th
+								   rowspan="2"
+								    style="vertical-align: middle;"
+								  scope="col" class="text-center">体积</th>
+								  <th
+								   rowspan="2"
+								    style="vertical-align: middle;"
+								  scope="col" class="text-center">重量</th>
+								  <th
+								   rowspan="2"
+								    style="vertical-align: middle;"
+								  scope="col" class="text-center">编码</th>
+							    </tr>
+								<tr>
+								  <th scope="col" class="text-center">库存</th>
+								  <th scope="col" class="text-center">尺寸</th>
+								</tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <th scope="row">1</th>
+							      <td>Mark</td>
+							      <td>Otto</td>
+							      <td>@mdo</td>
+								  <td>@mdo</td>
+								  <td>Mark</td>
+								  <td>Otto</td>
+								  <td>@mdo</td>
+								  <td>@mdo</td>
+								  <td>@mdo</td>
+								  <td>@mdo</td>
+							    </tr>
+							  </tbody>
+							</table>
+						</el-form-item>
 					</el-form>
 				</template>
 			</el-tab-pane>
 
-			<el-tab-pane label="商品属性">角色管理</el-tab-pane>
+			<el-tab-pane label="商品属性">
+				角色管理
+			</el-tab-pane>
 			<el-tab-pane label="媒体设置">媒体设置</el-tab-pane>
 			<el-tab-pane label="商品详情">媒体设置</el-tab-pane>
 			<el-tab-pane label="折扣设置">媒体设置</el-tab-pane>
@@ -60,7 +128,7 @@
 import { mapState, mapMutations } from 'vuex';
 import baseCreate from '@/components/shop/create/baseCreate.vue';
 import singleAttrs from '@/components/shop/create/singleAttrs.vue';
-import skuCard from "@/components/shop/create/skuCard.vue";
+import skuCard from '@/components/shop/create/skuCard.vue';
 export default {
 	data() {
 		return {
@@ -85,9 +153,19 @@ export default {
 	},
 	mounted() {
 		// console.log(this.$store.state.goods_create.sku_type)
+		//dragged  监听拖拽过程
+		// this.$dragging.$on('dragged', ({ value }) => {
+		// 	console.log(value.item);
+		// 	// console.log(value.list);
+		// });
+		//dragend 监听拖拽结束
+		// this.$dragging.$on('dragend', (e) => {
+		// 	console.log(e)
+		// 	console.log('拖拽结束')
+		// });
 	},
 	methods: {
-		...mapMutations(['vModelState','addSkuCard']),
+		...mapMutations(['vModelState', 'addSkuCard']),
 		//修改表单的值
 		vModel(key, value) {
 			console.log(key);
