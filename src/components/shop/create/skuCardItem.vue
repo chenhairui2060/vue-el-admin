@@ -4,7 +4,9 @@
 			<!-- 颜色选择器 -->
 			<el-color-picker v-if="type == 1" size="mini"></el-color-picker>
 			<!-- 图片选择器 -->
-			<span v-else class="btn btn-light border mar-2"><i class="el-icon-plus"></i></span>
+			<span v-else class="btn btn-light border mar-2">
+				<i class="el-icon-plus" @click="chooseImage"></i>
+			</span>
 		</div>
 		<input
 		@input="inputChange"
@@ -19,6 +21,7 @@
 <script>
 import {mapMutations} from "vuex"
 export default {
+	inject:['app'],
 	props: {
 		type: {
 			type: Number,
@@ -41,6 +44,11 @@ export default {
 		//监听input改变值
 		inputChange(e){
 			this.vModel('name',e.target.value)
+		},
+		chooseImage(){
+			this.app.chooseImage((res)=>{
+				console.log(res)
+			})
 		}
 	}
 };

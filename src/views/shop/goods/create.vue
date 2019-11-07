@@ -44,71 +44,7 @@
 							<el-button type="text">重量</el-button>
 						</el-form-item>
 						<el-form-item label="规格设置" class="mb-5">
-							<table class="table table-sm table-bordered">
-							  <thead>
-							    <tr>
-							      <th scope="col" 
-								  rowspan="1"
-								  colspan="2"
-								  class="text-center">商品规格</th>
-							      <th scope="col" 
-								   rowspan="2"
-								   style="vertical-align: middle;"
-								  class="text-center">sku图片</th>
-							      <th scope="col" 
-								   rowspan="2"
-								    style="vertical-align: middle;"
-								  class="text-center">销售价</th>
-							      <th 
-								   rowspan="2"
-								    style="vertical-align: middle;"
-								  scope="col" class="text-center">市场价</th>
-								  <th
-								   rowspan="2"
-								    style="vertical-align: middle;"
-								  scope="col" class="text-center">市场价</th>
-								  <th
-								   rowspan="2"
-								    style="vertical-align: middle;"
-								  scope="col" class="text-center">成本价</th>
-								  <th
-								   rowspan="2"
-								    style="vertical-align: middle;"
-								  scope="col" class="text-center">库存</th>
-								  <th
-								   rowspan="2"
-								    style="vertical-align: middle;"
-								  scope="col" class="text-center">体积</th>
-								  <th
-								   rowspan="2"
-								    style="vertical-align: middle;"
-								  scope="col" class="text-center">重量</th>
-								  <th
-								   rowspan="2"
-								    style="vertical-align: middle;"
-								  scope="col" class="text-center">编码</th>
-							    </tr>
-								<tr>
-								  <th scope="col" class="text-center">库存</th>
-								  <th scope="col" class="text-center">尺寸</th>
-								</tr>
-							  </thead>
-							  <tbody>
-							    <tr>
-							      <th scope="row">1</th>
-							      <td>Mark</td>
-							      <td>Otto</td>
-							      <td>@mdo</td>
-								  <td>@mdo</td>
-								  <td>Mark</td>
-								  <td>Otto</td>
-								  <td>@mdo</td>
-								  <td>@mdo</td>
-								  <td>@mdo</td>
-								  <td>@mdo</td>
-							    </tr>
-							  </tbody>
-							</table>
+							<sku-table></sku-table>
 						</el-form-item>
 					</el-form>
 				</template>
@@ -129,6 +65,7 @@ import { mapState, mapMutations } from 'vuex';
 import baseCreate from '@/components/shop/create/baseCreate.vue';
 import singleAttrs from '@/components/shop/create/singleAttrs.vue';
 import skuCard from '@/components/shop/create/skuCard.vue';
+import skuTable from "@/components/shop/create/skuTable.vue";
 export default {
 	data() {
 		return {
@@ -139,7 +76,8 @@ export default {
 	components: {
 		baseCreate,
 		singleAttrs,
-		skuCard
+		skuCard,
+		skuTable
 	},
 	computed: {
 		...mapState({

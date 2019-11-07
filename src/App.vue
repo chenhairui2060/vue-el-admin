@@ -1,12 +1,50 @@
 <template>
-	<div id="app"><router-view></router-view></div>
+	<div id="app">
+		<router-view></router-view>
+		<el-dialog title="标题" :visible.sync="imageModel">
+			
+			<div slot="footer" class="dialog-footer">
+				<el-button @click="hide">取 消</el-button>
+				<el-button type="primary" @click="confirm">确 定</el-button>
+			</div>
+		</el-dialog>
+	</div>
 </template>
 
 <script>
 export default {
 	name: 'app',
+	provide(){
+		return{
+			app:this
+		}
+	},
 	data() {
-		return {};
+		return {
+			imageModel:false,
+			callback:false
+		};
+	},
+	methods:{
+		//隐藏弹窗
+		hide(){
+			this.imageModel=false;
+			this.callback=false;
+		},
+		//打开弹窗  callback传过来的函数  空函数
+		chooseImage(callback){
+			this.callback=callback;
+			this.imageModel=true;
+		},
+		//确定
+		confirm(){
+			//拿到图片路径
+			if(typeof this.callback==='function'){
+				this.callback('拿到图片路径url')
+			}
+			//隐藏弹窗
+			this.hide()
+		}
 	}
 };
 </script>
