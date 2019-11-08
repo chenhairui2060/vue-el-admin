@@ -43,19 +43,18 @@
 							<el-button type="text">体积</el-button>
 							<el-button type="text">重量</el-button>
 						</el-form-item>
-						<el-form-item label="规格设置" class="mb-5">
-							<sku-table></sku-table>
-						</el-form-item>
+						<el-form-item label="规格设置" class="mb-5"><sku-table></sku-table></el-form-item>
 					</el-form>
 				</template>
 			</el-tab-pane>
 
-			<el-tab-pane label="商品属性">
-				角色管理
-			</el-tab-pane>
+			<el-tab-pane label="商品属性">商品属性</el-tab-pane>
 			<el-tab-pane label="媒体设置">媒体设置</el-tab-pane>
-			<el-tab-pane label="商品详情">媒体设置</el-tab-pane>
-			<el-tab-pane label="折扣设置">媒体设置</el-tab-pane>
+			<el-tab-pane label="商品详情">
+				<!-- 富文本编辑器 -->
+				<tinymce ref="editor" v-model="msg"  @onClick="onClick" />
+			</el-tab-pane>
+			<el-tab-pane label="折扣设置">折扣设置</el-tab-pane>
 		</el-tabs>
 	</div>
 </template>
@@ -65,19 +64,22 @@ import { mapState, mapMutations } from 'vuex';
 import baseCreate from '@/components/shop/create/baseCreate.vue';
 import singleAttrs from '@/components/shop/create/singleAttrs.vue';
 import skuCard from '@/components/shop/create/skuCard.vue';
-import skuTable from "@/components/shop/create/skuTable.vue";
+import skuTable from '@/components/shop/create/skuTable.vue';
+import tinymce from '@/components/common/tinymce.vue';
 export default {
 	data() {
 		return {
 			tabIndex: 0,
-			selectedOptions: []
+			selectedOptions: [],
+			msg: 'Welcome to Use Tinymce Editor'
 		};
 	},
 	components: {
 		baseCreate,
 		singleAttrs,
 		skuCard,
-		skuTable
+		skuTable,
+		tinymce
 	},
 	computed: {
 		...mapState({
@@ -111,6 +113,12 @@ export default {
 		},
 		handleClick(tab, event) {
 			console.log(tab, event);
+		},
+		// 鼠标单击的事件
+		onClick(e, editor) {
+			console.log('Element clicked');
+			console.log(e);
+			console.log(editor);
 		}
 	}
 };

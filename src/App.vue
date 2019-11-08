@@ -1,51 +1,35 @@
 <template>
 	<div id="app">
 		<router-view></router-view>
-		<el-dialog title="标题" :visible.sync="imageModel">
-			
-			<div slot="footer" class="dialog-footer">
-				<el-button @click="hide">取 消</el-button>
-				<el-button type="primary" @click="confirm">确 定</el-button>
-			</div>
-		</el-dialog>
+		<image-dialog ref="imageDialog" :max="maxChooseImg"></image-dialog>
 	</div>
 </template>
 
 <script>
+	import imageDialog from "@/components/image/imageDialog.vue";
 export default {
 	name: 'app',
+	components:{
+		imageDialog
+	},
 	provide(){
 		return{
 			app:this
 		}
 	},
-	data() {
-		return {
-			imageModel:false,
-			callback:false
-		};
+	data(){
+		return{
+			maxChooseImg:9
+		}
 	},
 	methods:{
-		//隐藏弹窗
-		hide(){
-			this.imageModel=false;
-			this.callback=false;
-		},
-		//打开弹窗  callback传过来的函数  空函数
-		chooseImage(callback){
-			this.callback=callback;
-			this.imageModel=true;
-		},
-		//确定
-		confirm(){
-			//拿到图片路径
-			if(typeof this.callback==='function'){
-				this.callback('拿到图片路径url')
-			}
-			//隐藏弹窗
-			this.hide()
+		chooseImage(callback,max){
+			console.log(max)
+			this.maxChooseImg=max;
+			this.$refs.imageDialog.chooseImage(callback)
 		}
 	}
+	
 };
 </script>
 

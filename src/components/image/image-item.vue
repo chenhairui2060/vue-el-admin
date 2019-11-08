@@ -9,7 +9,10 @@
 			class="list-group-item list-group-item-action d-flex align-items-center"
 		>
 			{{ item.name }}
-			<el-dropdown class="ml-auto">
+			<span class="btn btn-light btn-sm border ml-auto" v-if="!showOptions">
+				{{ item.order }}
+			</span>
+			<el-dropdown class="ml-auto" v-else>
 				<span class="btn btn-light btn-sm border">
 					{{ item.order }}
 					<i class="el-icon-arrow-down el-icon--right"></i>
@@ -26,6 +29,7 @@
 
 <script>
 export default {
+	name:"imageItem",
 	props: {
 		ablums: {
 			type: Array,
@@ -34,6 +38,10 @@ export default {
 		ablumsIndex: {
 			type: Number,
 			default: 0
+		},
+		showOptions:{
+			type:Boolean,
+			default:true
 		}
 	},
 	data() {

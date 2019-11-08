@@ -323,6 +323,7 @@ export default {
 		handleCurrentChange(val) {
 			console.log(`当前页: ${val}`);
 		},
+		//取消选中
 		unChoose(){
 			this.imageList.forEach(img=>{
 				// console.log(img)

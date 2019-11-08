@@ -14,7 +14,10 @@
 			<tr v-for="(item, index) in list" :key="index" class="text-center">
 				<th scope="row" v-for="(sku, skuIndex) in item.skus" :key="skuIndex">{{ sku.name }}</th>
 				<td width="100">
-					<span class="btn btn-light border mar-2"><i class="el-icon-plus"></i></span>
+					<span v-if="!item.image" class="btn btn-light border mar-2"  @click="chooseImage(item)">
+						<i class="el-icon-plus"></i>
+					</span>
+					<img @click="chooseImage(item)" v-else :src="item.image" style="height: 40px;width: 40px;" class="rounded"/>
 				</td>
 				<td width="100"><el-input type="number" size="mini" v-model="item.pprice"></el-input></td>
 				<td width="100"><el-input type="number" size="mini" v-model="item.oprice"></el-input></td>
@@ -31,6 +34,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex';
 export default {
+	inject:['app'],
 	data(){
 		return{
 			list:[]
@@ -49,6 +53,14 @@ export default {
 	},
 	mounted() {
 		this.list=this.tableData
+	},
+	methods:{
+		//选择图片
+		chooseImage(item){
+			this.app.chooseImage((res)=>{
+				item.image=res[0].url
+			},1)
+		}
 	}
 };
 </script>
