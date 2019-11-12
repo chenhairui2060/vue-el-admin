@@ -68,9 +68,6 @@ export default {
 	},
 	watch: {
 		$route(to, from) {	
-		    if(to.path=='/index'){
-				this.slideMenuActive=0
-			}
 			// 本地存储
 			localStorage.setItem(
 				'navActive',
@@ -98,6 +95,13 @@ export default {
 	methods: {
 		__initNavBar() {
 			let r = localStorage.getItem('navActive');
+			console.log(r)
+			console.log(this.$route)
+			if(this.$route.path=='/index'){
+				this.navBar.active = "0";
+				this.slideMenuActive = "0";
+				return
+			}
 			if (r) {
 				r = JSON.parse(r);
 				this.navBar.active = r.top;

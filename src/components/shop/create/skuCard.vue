@@ -3,7 +3,7 @@
 		<div class="card-header d-flex align-items-center">
 			规格项：
 			<el-input :value="item.name" @input="vModel('name', index, $event)" class="w-25" size="mini">
-				<el-button slot="append" style="border: none;" class="el-icon-more"></el-button>
+				<el-button slot="append" style="border: none;" @click="chooseSkus" class="el-icon-more"></el-button>
 			</el-input>
 			<el-radio-group :value="item.type" @input="vModel('type', index, $event)" style="margin-bottom: -12px;" size="mini" class="ml-2">
 				<el-radio :label="0">无</el-radio>
@@ -41,6 +41,7 @@
 import skuCardItem from "./skuCardItem.vue";
 import { mapState, mapMutations } from 'vuex';
 export default {
+	inject:['app'],
 	props:{
 		item:Object,
 		index:Number,
@@ -48,6 +49,7 @@ export default {
 	},
 	data() {
 		return {
+			
 			list:this.item.list
 		};
 	},
@@ -57,6 +59,10 @@ export default {
 		// 	// console.log(value.list);
 		// });
 		// //dragend 监听拖拽结束
+		//渲染的是父组件传入的值，应该加监听属性实时改变渲染的list表格
+		this.$watch('item.list',(newValue,oldValue)=>{
+			this.list=newValue
+		})
 		this.$dragging.$on('dragend', (e) => {
 			// console.log('拖拽结束')
 			if(e.group=='skuItem'+this.index){
@@ -99,6 +105,15 @@ export default {
 						message: '已取消删除'
 					});
 				});
+		},
+		chooseSkus(){
+			this.app.chooseSkus((res)=>{
+					// console.log(res)
+					this.vModel("name", this.index, res.name);
+					this.vModel("type", this.index, res.type);
+					this.vModel("list", this.index, res.list);
+					this.list=res.list;
+			})
 		}
 	}
 };

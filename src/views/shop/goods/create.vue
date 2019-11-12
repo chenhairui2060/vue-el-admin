@@ -36,20 +36,32 @@
 
 					<el-form label-width="80px">
 						<el-form-item label="批量添加">
-							<el-button type="text">销售价</el-button>
-							<el-button type="text">市场价</el-button>
-							<el-button type="text">成本价</el-button>
-							<el-button type="text">库存</el-button>
-							<el-button type="text">体积</el-button>
-							<el-button type="text">重量</el-button>
+							<template v-if="!updateAllStatus">
+								<el-button type="text" 
+								@click="chooseItem(item)"
+								v-for="(item,index) in updateList" :key="index">{{item.name}}</el-button>
+							</template>
+							<div v-else class="d-flex align-items-center">
+								<el-input v-model="updateValue" type="number" size="mini" :placeholder="UpdateAllPlaceholder" style="width: 150px;" class="mr-2"></el-input>
+								<el-button type="primary" @click="updateSubmit" size="mini">设置</el-button>
+								<el-button size="mini" @click="closeUpdateAllStatus">取消</el-button>
+							</div>
 						</el-form-item>
-						<el-form-item label="规格设置" class="mb-5"><sku-table></sku-table></el-form-item>
+						<el-form-item label="规格设置" class="mb-5"><sku-table ref="table"></sku-table></el-form-item>
 					</el-form>
 				</template>
 			</el-tab-pane>
 
 			<el-tab-pane label="商品属性">商品属性</el-tab-pane>
-			<el-tab-pane label="媒体设置">媒体设置</el-tab-pane>
+			<el-tab-pane label="媒体设置">
+				<el-form  label-width="80px">
+					<el-form-item label="商品大图">
+						<div style="height: 150px;width: 150px;" class="border rounded d-flex align-items-center justify-content-center">
+							<div class="el-icon-plus text-muted" style="font-size: 30px;"></div>
+						</div>
+					</el-form-item>
+				</el-form>
+			</el-tab-pane>
 			<el-tab-pane label="商品详情">
 				<!-- 富文本编辑器 -->
 				<tinymce ref="editor" v-model="msg"  @onClick="onClick" />
@@ -71,7 +83,36 @@ export default {
 		return {
 			tabIndex: 0,
 			selectedOptions: [],
-			msg: 'Welcome to Use Tinymce Editor'
+			msg: 'Welcome to Use Tinymce Editor',
+			updateAllStatus:false,
+			UpdateAllPlaceholder:'',
+			updateValue:'',
+			updateList:[
+				{
+					name:'销售价',
+					key:'pprice'
+				},
+				{
+					name:'市场价',
+					key:'oprice'
+				},
+				{
+					name:'成本价',
+					key:'cprice'
+				},
+				{
+					name:'库存',
+					key:'stock'
+				},
+				{
+					name:'体积',
+					key:'volume'
+				},{
+					name:'重量',
+					key:'weight'
+				},
+				
+			]
 		};
 	},
 	components: {
@@ -119,6 +160,29 @@ export default {
 			console.log('Element clicked');
 			console.log(e);
 			console.log(editor);
+		},
+		//修改全局设置状态
+		chooseItem(item){
+			console.log(item)
+			this.updateAllStatus=item.key;
+			this.UpdateAllPlaceholder=item.name;
+		},
+		//取消批量设置状态
+		closeUpdateAllStatus(){
+			this.updateAllStatus=false;
+			this.updateValue='';
+		},
+		//提交批量设置
+		updateSubmit(){
+			// console.log(this.$refs.table.list)
+			if(this.updateValue){
+				this.$refs.table.list.forEach(v=>{
+					v[this.updateAllStatus]=this.updateValue
+				})
+			}else{
+			    this.$message.error('不能设置为空！');
+			}
+			
 		}
 	}
 };

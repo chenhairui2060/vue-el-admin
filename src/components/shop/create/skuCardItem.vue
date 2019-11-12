@@ -2,7 +2,7 @@
 	<div class="border py-2 px-4 rounded mr-2 position-relative d-flex align-items-center">
 		<div v-if="type !== 0">
 			<!-- 颜色选择器 -->
-			<el-color-picker v-if="type == 1" size="mini"></el-color-picker>
+			<el-color-picker :value="item.color" v-if="type == 1" size="mini" @change="colorChange"></el-color-picker>
 			<!-- 图片选择器 -->
 			<template v-else>
 				<span v-if="!item.image" class="btn btn-light border mar-2"  @click="chooseImage">
@@ -55,6 +55,10 @@ export default {
 				// console.log(res[0].url)
 				this.vModel('image',res[0].url)
 			},1)
+		},
+		//修改颜色
+		colorChange(e){
+			this.vModel('color',e)
 		}
 	}
 };
